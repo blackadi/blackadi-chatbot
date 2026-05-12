@@ -3,6 +3,10 @@ import OpenAI from "openai";
 export const useOpenAI = () => {
     const config = useRuntimeConfig()
 
+    if (!config.openaiKey) {
+        throw new Error("Missing OpenAI API Key in runtimeConfig");
+    }
+
     return new OpenAI({
         apiKey: config.openaiKey
     });
